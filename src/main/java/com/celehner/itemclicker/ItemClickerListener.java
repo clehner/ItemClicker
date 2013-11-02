@@ -23,14 +23,17 @@ public class ItemClickerListener implements Listener {
     public void onPlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         Action action = event.getAction();
+
         if (action == Action.LEFT_CLICK_AIR ||
-                action == Action.LEFT_CLICK_BLOCK) {
-            Material material =
-                player.getInventory().getItemInHand().getType();
+            action == Action.LEFT_CLICK_BLOCK ||
+            action == Action.RIGHT_CLICK_AIR ||
+            action == Action.RIGHT_CLICK_BLOCK) {
+
+            Material material = player.getInventory().getItemInHand().getType();
             String cmd = plugin.getCommandForItemClick(material);
-			if (cmd != null) {
-				player.performCommand(cmd);
-			}
+            if (cmd != null) {
+                player.performCommand(cmd);
+            }
         }
     }
 }
